@@ -139,7 +139,11 @@ public class RNAudioRecorderPlayerModule extends ReactContextBaseJavaModule impl
       promise.reject("stopRecord", "recorder is null.");
       return;
     }
-    mediaRecorder.stop();
+    try {
+      mediaRecorder.stop();
+    } catch(RuntimeException stopException) {
+
+    }
     mediaRecorder.release();
     mediaRecorder = null;
 
